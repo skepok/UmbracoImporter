@@ -55,7 +55,8 @@ Document Types:
 						permissions:
 							allow-root:true #default false
 							items:
-								name:ref "{Document Types/items/Web Blocks/Blocks Base/*}"
+								name:
+									ref "{Document Types/items/Web Blocks/Blocks Base/*}"
 			name: "Base"
 				type: "Document Type without a template"
 				items:
@@ -73,15 +74,18 @@ Document Types:
 								permissions:
 									allow-root:true #default false	
 									items:
-										name:ref "{Document Types/items/Base/Web Blocks Page/Content Page}"
-										name:ref "{Document Types/items/Base/Web Blocks Page/News Landing Page}"
+										name:
+											ref "{Document Types/items/Base/Web Blocks Page/Content Page}"
+										name:
+											ref "{Document Types/items/Base/Web Blocks Page/News Landing Page}"
 							name: "Content Page"
 								type: "Document Type without a template"
 							name: "News Landing Page"
 								type: "Document Type without a template"
 								permissions:
 									items:
-										name:ref "{Document Types/items/Base/Web Blocks Page/News Page}"
+										name:
+											ref "{Document Types/items/Base/Web Blocks Page/News Page}"
 								tabs:
 									name: "content"
 										properties:
@@ -126,7 +130,8 @@ Document Types:
 		
 Content:
 	name: "Home"
-		type:ref "{Document Types/items/Base/Web Blocks Page/Home Page}"
+		type:
+			ref "{Document Types/items/Base/Web Blocks Page/Home Page}"
 		items:
 			name: "About"
 				type: "{Document Types/items/Base/Web Blocks Page/Content Page}"
@@ -136,15 +141,19 @@ Content:
 		type:"{Document Types/Data Sources}"
 		items:
 			name: "News Categories"
-				type: ref "{Document Types/items/Base/Data Sources/News Categories}"
+				type: 
+					ref "{Document Types/items/Base/Data Sources/News Categories}"
 				items:
 					name:  "Industry News"
-					type: ref "{Document Types/items/Base/Data Sources/News Category}"
+					type: 
+						ref "{Document Types/items/Base/Data Sources/News Category}"
 		Site Settings
-			type: ref "{Document Types/items/Base/Site Settings}"
+			type: 
+				ref "{Document Types/items/Base/Site Settings}"
 			properties:
 				name: "About Us Page"
-				value: ref "{Content/Home/About}"
+				value: 
+					ref "{Content/Home/About}"
 				
 				
 				
