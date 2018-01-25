@@ -1,0 +1,250 @@
+{
+	"Config": {
+		"mentor": "2.0",
+		"info": {
+			"title": "Mentor Site Generator for client X",
+			"description": "Generates an umbraco site based on the specifications outlined",
+			"version": "1.0.0"
+		},	
+		"dev": {
+			"environment": "Dev (Samwise)",
+			"host": "sitename-web-dev.digitalconnect.co.uk",
+			"connectionstring": "test"
+		},
+		"staging": {
+			"environment": "Staging (Samwise)",
+			"host": "sitename-web-staging.digitalconnect.co.uk",
+			"connectionstring": "test",
+		},
+		"live": {
+			"environment": "Live (Samwise)",
+			"host": "sitename-web-live.digitalconnect.co.uk",
+			"connectionstring": "test",
+		}
+	},
+	"DataTypes": {
+		"items": [
+			{
+				"name": "News Category Picker",
+				"type": "Content Picker",
+				"start-node": {
+					"ref": "{Content/Data Sources/News Categories}"
+				}
+			}
+		]
+	},
+	"Document Types": {
+		"items": [
+			{
+				"name": "Web Blocks",
+				"type": "Folder",
+				"items": [
+					{
+						"name": "Blocks Base",
+						"type": "Document Type without a template",
+						"items": [
+							{
+								"name": "Breadcrumb Block",
+								"type": "Document Type without a template"
+							},
+							{
+								"name": "Blocks Folder",
+								"type": "Document Type without a template",
+								"permissions": {
+									"allow-root": true
+								},
+								"items": [
+									{
+										"name": "all",
+										"ref": "{Document Types/items/Web Blocks/Blocks Base}"
+									}
+								]
+							}
+						]
+					},
+					{
+						"name": "Base",
+						"type": "Document Type without a template",
+						"items": [
+							{
+								"name": "Year Folder",
+								"type": "Document Type without a template",
+								"items": [
+									{
+										"name": "Month Folder",
+										"type": "Document Type without a template"
+									},
+									{
+										"name": "Web Blocks Page",
+										"type": "Document Type without a template",
+										"items": [
+											{
+												"name": "Home Page",
+												"type": "Document Type without a template",
+												"controller": true,
+												"permissions": {
+													"allow-root": true,
+													"items": [
+														{
+															"name": {
+																"ref": "{Document Types/items/Base/Web Blocks Page/Content Page}"
+															}
+														},
+														{
+															"name": {
+																"ref": "{Document Types/items/Base/Web Blocks Page/News Landing Page}"
+															}
+														},
+														{
+															"name": "Content Page",
+															"type": "Document Type without a template"
+														},
+														{
+															"name": "News Landing Page",
+															"type": "Document Type without a template",
+															"permissions": null,
+															"items": [
+																{
+																	"name": [
+																		{
+																			"ref": "{Document Types/items/Base/Web Blocks Page/News Page}"
+																		}
+																	],
+																	"tabs": [
+																		{
+																			"name": "content",
+																			"properties": [
+																				{
+																					"name": "No News Text",
+																					"type": "textbox",
+																					"mandatory": true
+																				}
+																			]
+																		}
+																	]
+																},
+																{
+																	"name": "News Page",
+																	"type": "Document Type without a template",
+																	"tabs": [
+																		{
+																			"name": "Content",
+																			"properties": [
+																				{
+																					"name": "Content",
+																					"type": "rte"
+																				},
+																				{
+																					"name": "Summary",
+																					"type": "textarea"
+																				},
+																				{
+																					"name": "Image",
+																					"type": "image"
+																				},
+																				{
+																					"name": "Date",
+																					"type": "date"
+																				}
+																			]
+																		}
+																	]
+																}
+															]
+														}
+													]
+												}
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "Data Sources",
+				"type": "Document Type without a template",
+				"items": [
+					{
+						"name": "News Categories",
+						"type": "Document Type without a template",
+						"items": [
+							{
+								"name": "News Category",
+								"type": "Document Type without a template"
+							}
+						]
+					},
+					{
+						"name": "Site Settings",
+						"type": "Document Type without a template",
+						"tabs": [
+							{
+								"name": "Content",
+								"properties": [
+									{
+										"name": "About Us Page",
+										"type": "Content Picker"
+									}
+								]
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	"Content": [
+		{
+			"name": "Home",
+			"type": {
+				"ref": "{Document Types/items/Base/Web Blocks Page/Home Page}"
+			},
+			"items": [
+				{
+					"name": "About",
+					"type": "{Document Types/items/Base/Web Blocks Page/Content Page}"
+				},
+				{
+					"name": "Web Blocks",
+					"type": "{Document Types/items/Web Blocks/Blocks Folder}"
+				}
+			]
+		},
+		{
+			"name": "Data Sources",
+			"type": "{Document Types/Data Sources}",
+			"items": [
+				{
+					"name": "News Categories",
+					"type": {
+						"ref": "{Document Types/items/Base/Data Sources/News Categories}"
+					},
+					"items": [
+						{
+							"name": "Industry News",
+							"type": {
+								"ref": "{Document Types/items/Base/Data Sources/News Category}"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Site Settings",
+			"type": {
+				"ref": "{Document Types/items/Base/Site Settings}"
+			},
+			"properties": [
+				{
+					"name": "About Us Page",
+					"value": "ref",
+					"ref": "{Content/Home/About}"
+				}
+			]
+		}
+	]
+}
