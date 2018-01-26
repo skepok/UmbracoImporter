@@ -36,6 +36,14 @@ namespace UmbracoImporter.Core
 
 			return importNode;
 		}
-	
+
+
+		public ImportNode Load(string json)
+		{	
+			ImportNode importNode = new ImportNode();
+			importNode = JsonConvert.DeserializeObject<ImportNode>(json);
+			return importNode;
+		}
+
 	}
 }

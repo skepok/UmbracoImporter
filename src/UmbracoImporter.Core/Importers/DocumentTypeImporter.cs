@@ -9,15 +9,17 @@ namespace UmbracoImporter.Core.Importers
 {
 	public class DocumentTypeImporter
 	{
-		public void Import(DocumentTypes documentTypes)
+		public DocumentTypes Import(DocumentTypes documentTypes)
 		{
-			foreach(var item in documentTypes.Items)
+			foreach (var item in documentTypes.Items)
 			{
 				if (string.IsNullOrEmpty(item.Name))
 				{
 
 				}
 			}
+
+			return documentTypes;
 		}
 
 		private void CreateDocumentType(string name)

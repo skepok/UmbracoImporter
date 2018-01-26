@@ -264,6 +264,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Api\UImporterApiController.cs" />
     <Compile Include="Importers\DocumentTypeImporter.cs" />
     <Compile Include="JsonParser.cs" />
     <Compile Include="Models\JsonClasses.cs" />

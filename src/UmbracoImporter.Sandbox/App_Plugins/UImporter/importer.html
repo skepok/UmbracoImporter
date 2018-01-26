@@ -1,0 +1,78 @@
+<!--<div class="importer" ng-controller="Umbraco.Dashboard.RedirectUrlsController as vm">-->
+
+<style>
+
+    .uimporter{
+
+    }
+
+    .playground{
+        border:2px solid black;
+    }
+
+    .input{
+        width:45%;
+        border:1px solid red;
+        float:left;
+        height:600px;
+    }
+
+    .blocks{
+         width:45%;
+          border:1px solid red;
+          float: right;
+           height:600px;
+    }
+    
+    textarea{
+        width:100%;
+        height:100%;
+    }
+
+    /*#navOffset{
+        margin-left:10px;
+    }*/
+</style>
+
+
+<div class="uimporter">
+
+    <h1>Importer</h1>
+    <span id="import">import</span>
+    <span id="test">TEST</span>
+    <article class="playground">
+
+        <div class="input">
+          <textarea></textarea>
+        </div>
+
+        <div class="blocks">
+            Blocks will form here
+        </div>
+
+
+
+    </article>
+
+
+
+
+    <script>
+
+        $("#test").on("click", function () {
+            $.get("/umbraco/backoffice/api/UImporterApi/GetAllProducts", function (response) {
+                alert(response);
+            });
+        });
+
+        $("#import").on("click", function () {
+            var json = $("textarea").val();
+            $.post("/umbraco/backoffice/api/UImporterApi/ImportJson", json, function (response) {
+                alert(response);
+            });
+           
+        });
+
+ 
+    </script>
+</div>
