@@ -1,0 +1,261 @@
+{
+	"Config": {
+		"Mentor": "2.0",
+		"Meta": {
+			"Title": "Mentor Site Generator for client X",
+			"Description": "Generates an umbraco site based on the specifications outlined",
+			"Version": "1.0.0"
+		},
+		"Environments": [{
+				"Name": "Dev (Samwise)",
+				"Host": "siteName-web-dev.digitalconnect.co.uk",
+				"ConnectionString": "test"
+			},
+			{
+				"Name": "Staging (Samwise)",
+				"Host": "siteName-web-staging.digitalconnect.co.uk",
+				"ConnectionString": "test"
+			},
+			{
+				"Name": "Live (Samwise)",
+				"Host": "siteName-web-live.digitalconnect.co.uk",
+				"ConnectionString": "test"
+			}
+		]
+	},
+	"DataTypes": {
+		"Items": [{
+			"Name": "News Category Picker",
+			"NodeType": {
+				"Name": "Content Picker"
+			},
+			"StartNode": {
+				"Ref": "{Content/Data Sources/News Categories}"
+			}
+		}]
+	},
+	"DocumentTypes": {
+		"Items": [{
+				"Name": "Web Blocks",
+				"NodeType": {
+					"Name": "Folder"
+				},
+				"Items": [{
+						"Name": "Blocks Base",
+						"NodeType": {
+							"Name": "Document Type without a template"
+						},
+						"Items": [{
+								"Name": "Breadcrumb Block",
+								"NodeType": {
+									"Name": "Document Type without a template"
+								}
+							},
+							{
+								"Name": "Blocks Folder",
+								"NodeType": {
+									"Name": "Document Type without a template"
+								},
+								"Permissions": {
+									"AllowRoot": true
+								},
+								"Items": [{
+									"Name": "all",
+									"Ref": "{Document NodeTypes/Items/Web Blocks/Blocks Base}"
+								}]
+							}
+						]
+					},
+					{
+						"Name": "Base",
+						"NodeType": {
+							"Name": "Document Type without a template"
+						},
+						"Items": [{
+							"Name": "Year Folder",
+							"NodeType": {
+								"Name": "Document Type without a template"
+							},
+							"Items": [{
+									"Name": "Month Folder",
+									"NodeType": {
+										"Name": "Document Type without a template"
+									}
+								},
+								{
+									"Name": "Web Blocks Page",
+									"NodeType": {
+										"Name": "Document Type without a template"
+									},
+									"Items": [{
+										"Name": "Home Page",
+										"NodeType": {
+											"Name": "Document Type without a template"
+										},
+										"controller": true,
+										"Permissions": {
+											"AllowRoot": true,
+											"Items": [{
+													"Name": {
+														"Ref": "{Document NodeTypes/Items/Base/Web Blocks Page/Content Page}"
+													}
+												},
+												{
+													"Name": {
+														"Ref": "{Document NodeTypes/Items/Base/Web Blocks Page/News Landing Page}"
+													}
+												},
+												{
+													"Name": "Content Page",
+													"NodeType": {
+														"Name": "Document Type without a template"
+													}
+												},
+												{
+													"Name": "News Landing Page",
+													"NodeType": {
+														"Name": "Document Type without a template"
+													},
+													"Permissions": null,
+													"Items": [{
+															"Name": "Ref {Document Types/Items/Base/Web Blocks Page/News Page}",
+															"Tabs": [{
+																"Name": "content",
+																"Properties": [{
+																	"Name": "No News Text",
+																	"NodeType": "textbox",
+																	"Mandatory": true
+																}]
+															}]
+														},
+														{
+															"Name": "News Page",
+															"NodeType": {
+																"Name": "Document Type without a template"
+															},
+															"Tabs": [{
+																"Name": "Content",
+																"Properties": [{
+																		"Name": "Content",
+																		"NodeType": {
+																			"Name": "rte"
+																		}
+																	},
+																	{
+																		"Name": "Summary",
+																		"NodeType": {
+																			"Name": "textarea"
+																		}
+																	},
+																	{
+																		"Name": "Image",
+																		"NodeType": {
+																			"Name": "image"
+																		}
+																	},
+																	{
+																		"Name": "Date",
+																		"NodeType": {
+																			"Name": "date"
+																		}
+																	}
+																]
+															}]
+														}
+													]
+												}
+											]
+										}
+									}]
+								}
+							]
+						}]
+					}
+				]
+			},
+			{
+				"Name": "Data Sources",
+				"NodeType": {
+					"Name": "Document Type without a template"
+				},
+				"Items": [{
+						"Name": "News Categories",
+						"NodeType": {
+							"Name": "Document Type without a template"
+						},
+						"Items": [{
+							"Name": "News Category",
+							"NodeType": {
+								"Name": "Document Type without a template"
+							}
+						}]
+					},
+					{
+						"Name": "Site Settings",
+						"NodeType": {
+							"Name": "Document Type without a template"
+						},
+						"Tabs": [{
+							"Name": "Content",
+							"Properties": [{
+								"Name": "About Us Page",
+								"NodeType": "Content Picker"
+							}]
+						}]
+					}
+				]
+			}
+		]
+	},
+	"Content":{
+		"Items": [{
+			"Name": "Home",
+			"NodeType": {
+				"Ref": "{Document NodeTypes/Items/Base/Web Blocks Page/Home Page}"
+			},
+			"Items": [{
+					"Name": "About",
+					"NodeType": {
+						"Ref": "{Document NodeTypes/Items/Base/Web Blocks Page/Content Page}"
+					}
+				},
+				{
+					"Name": "Web Blocks",
+					"NodeType": {
+						"Ref": "{Document NodeTypes/Items/Web Blocks/Blocks Folder}"
+					}
+				}
+			]
+		},
+		{
+			"Name": "Data Sources",
+			"NodeType": {
+					"Ref": "{Document NodeTypes/Data Sources}"
+			},
+			"Items": [{
+				"Name": "News Categories",
+				"NodeType": {
+					"Ref": "{Document NodeTypes/Items/Base/Data Sources/News Categories}"
+				},
+				"Items": [{
+					"Name": "Industry News",
+					"NodeType": {
+						"Ref": "{Document NodeTypes/Items/Base/Data Sources/News Category}"
+					}
+				}]
+			}]
+		},
+		{
+			"Name": "Site Settings",
+			"NodeType": {
+				"Ref": "{Document NodeTypes/Items/Base/Site Settings}"
+			},
+			"Properties": [{
+				"Name": "About Us Page",
+				"Value": {
+					"Ref": "{Content/Home/About}"
+				}
+			}]
+		}
+	]
+}}

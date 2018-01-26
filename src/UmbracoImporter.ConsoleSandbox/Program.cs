@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UmbracoImporter.Core;
+using UmbracoImporter.Core.Importers;
 
 namespace UmbracoImporter.ConsoleSandbox
 {
@@ -14,8 +15,13 @@ namespace UmbracoImporter.ConsoleSandbox
 			//YamlParser parser = new YamlParser();
 			//parser.Load();
 
-			JsonImporter json = new JsonImporter();
-			json.Load();
+			JsonParser json = new JsonParser();
+			var root = json.Load();
+
+
+			DocumentTypeImporter documentTypeImporter = new DocumentTypeImporter();
+			documentTypeImporter.Import(root.DocumentTypes);
+
 		}
 	}
 }
