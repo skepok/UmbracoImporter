@@ -60,14 +60,14 @@
     <script>
 
         $("#test").on("click", function () {
-            $.get("/umbraco/backoffice/api/UImporterApi/GetAllProducts", function (response) {
+            $.get("/umbraco/backoffice/api/UImporterApi/MockImportJson", function (response) {
                 alert(response);
             });
         });
 
         $("#import").on("click", function () {
             var json = $("textarea").val();
-            $.post("/umbraco/backoffice/api/UImporterApi/ImportJson", json, function (response) {
+            $.post("/umbraco/backoffice/api/UImporterApi/ImportJson", { json: json }, function (response) {
                 alert(response);
             });
            

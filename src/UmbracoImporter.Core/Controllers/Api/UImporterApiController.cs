@@ -14,26 +14,31 @@ namespace UmbracoImporter.Core.Controllers.Api
 	public class UImporterApiController : UmbracoAuthorizedApiController
 	{
 		protected JsonParser jsonParser;
-		public UImporterApiController()
+		protected DocumentTypeImporter _documentTypeImporter;
+		public UImporterApiController(DocumentTypeImporter documentTypeImporter)
 		{
 			jsonParser = new JsonParser();
+			_documentTypeImporter = documentTypeImporter;
 		}
+
 		[HttpGet]
-		public IEnumerable<string> GetAllProducts()
+		public ImportNode MockImportJson()
 		{
-			return new[] { "Table", "Chair", "Desk", "Computer", "Beer fridge" };
+			ImportNode root = jsonParser.Load();
+
+			_documentTypeImporter.Import(root.DocumentTypes);
+			return root;
 		}
 
 		[HttpPost]
-		public string ImportJson(string json)
+		public ImportNode ImportJson(string json)
 		{
 			ImportNode root = jsonParser.Load(json);
-
-			//DocumentTypeImporter documentTypeImporter = new DocumentTypeImporter();
-			//documentTypeImporter.Import(root.DocumentTypes);
-			var parsed = JsonConvert.SerializeObject(root);
-
-			return parsed;
+			_documentTypeImporter.Import(root.DocumentTypes);
+			
+			//var parsed = JsonConvert.SerializeObject(root);
+			//return new[] { parsed };
+			return root;
 		}
 	}
 }

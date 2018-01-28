@@ -15,12 +15,12 @@ namespace UmbracoImporter.ConsoleSandbox
 			//YamlParser parser = new YamlParser();
 			//parser.Load();
 
-			JsonParser json = new JsonParser();
-			var root = json.Load();
+			//JsonParser json = new JsonParser();
+			//var root = json.Load();
 
 
-			DocumentTypeImporter documentTypeImporter = new DocumentTypeImporter();
-			documentTypeImporter.Import(root.DocumentTypes);
+			//DocumentTypeImporter documentTypeImporter = new DocumentTypeImporter();
+			//documentTypeImporter.Import(root.DocumentTypes);
 
 		}
 	}
