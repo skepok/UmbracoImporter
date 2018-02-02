@@ -248,7 +248,7 @@
 		{
 			"Name": "Site Settings",
 			"NodeType": {
-				"Ref": "{Document NodeTypes/Items/Base/Site Settings}"
+				"Ref": "{Document Types/Items/Base/Site Settings}"
 			},
 			"Properties": [{
 				"Name": "About Us Page",

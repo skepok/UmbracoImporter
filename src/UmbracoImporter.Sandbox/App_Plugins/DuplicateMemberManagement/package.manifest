@@ -1,0 +1,10 @@
+﻿{
+  javascript: [
+    "~/App_Plugins/DuplicateMemberManagement/DuplicateMemberManagement.Interfaces.js",
+    "~/App_Plugins/DuplicateMemberManagement/DuplicateMemberManagement.Models.js",
+    "~/App_Plugins/DuplicateMemberManagement/DuplicateMemberManagement.Services.js",
+    "~/App_Plugins/DuplicateMemberManagement/DuplicateMemberManagement.Controllers.js",
+    "~/App_Plugins/DuplicateMemberManagement/DuplicateMemberManagement.App.js",
+    "~/App_Plugins/DuplicateMemberManagement/DuplicateMemberManagement.Directives.js"
+  ]
+}

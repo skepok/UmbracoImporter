@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -46,6 +47,16 @@ namespace UmbracoImporter.Core.Models
 	public class Item
 	{
 		public string Name { get; set; }
+
+		[JsonIgnore]
+		public string Alias
+		{
+			get
+			{
+				return char.ToLower(Name[0]) + Name.Substring(1, Name.Length - 1).Replace(" ", string.Empty);
+			}
+		}
+
 		public NodeType NodeType { get; set; }
 		public StartNode StartNode { get; set; }
 		public List<Item> Items { get; set; }

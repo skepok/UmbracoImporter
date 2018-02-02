@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="en" intName="English (UK)" localName="English (UK)" lcid="" culture="en-GB">
+  <creator>
+    <name>Mentor Digital</name>
+    <link>http://mentordigital.co.uk</link>
+  </creator>
+  <area alias="sections">
+    <key alias="DuplicateGuestManagement">Duplicate Guest Dashboard</key>
+  </area>
+  <area alias="treeHeaders">
+    <key alias="DuplicateGuestManagement">Duplicate Guest Dashboard</key>
+  </area>
+</language>

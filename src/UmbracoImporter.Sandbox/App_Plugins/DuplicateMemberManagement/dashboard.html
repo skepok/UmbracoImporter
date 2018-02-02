@@ -1,0 +1,111 @@
+﻿<div ng-controller="duplicateMemberManagementCtrl as ctrl">
+    <div>
+
+        <div class="umb-table">
+            <div class="umb-table-head">
+                <div class="umb-table-row">
+                    <div class="umb-table-cell"></div>
+                    <div class="umb-table-cell"></div>
+                    <div class="umb-table-cell"></div>
+                    <div class="umb-table-cell"></div>
+                    <div class="umb-table-cell" style="text-align: right;"><p style="width: 100%;">Filter by status:</p></div>
+                    <div class="umb-table-cell">
+                        <select ng-model="ctrl.StatusFilter" ng-change="ctrl.ResetFilter()">
+                            <option value="unresolved">Unresolved</option>
+                            <option value="resolved">Resolved</option>
+                            <option value="all">All</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="umb-table-row">
+                    <div class="umb-table-cell"></div>
+                    <div class="umb-table-cell" style="text-align: right; padding-bottom: 56px;"><p style="width: 100%;">Filter by Date:</p></div>
+                    <div class="umb-table-cell" style="padding-bottom: 56px;">
+                        <div class="umb-editor umb-datepicker">
+                            <input ng-model="ctrl.DateFilterStart" type="date" />
+                        </div>
+                    </div>
+                    <div class="umb-table-cell">
+                        <div class="umb-editor umb-datepicker">
+                            <input ng-model="ctrl.DateFilterEnd" type="date" />
+                            <button ng-click="ctrl.Filter()" style="float: right;" class="btn umb-button__button btn-success">Update</button>
+                            <a ng-click="ctrl.ResetFilter()" style="float: right; clear: both;">Reset Dates</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="umb-table-row">
+                    <div class="umb-table-cell">
+                        &nbsp;
+                    </div>
+                    <div class="umb-table-cell">
+                        Member Id
+                    </div>
+                    <div class="umb-table-cell">
+                        Created Date
+                    </div>
+                    <div class="umb-table-cell">
+                        VIKI Ids
+                    </div>
+                    <div class="umb-table-cell">
+                        Resolution Date
+                    </div>
+                    <div class="umb-table-cell">
+                        Status
+                    </div>
+                </div>
+            </div>
+            <div class="umb-table-body">
+                <div class="umb-table-row"
+                     ng-repeat="item in ctrl.PagedDuplicateList" style="cursor: auto; -webkit-touch-callout: initial;
+                                                                                    -webkit-user-select: initial;
+                                                                                    -khtml-user-select: initial;
+                                                                                    -moz-user-select: initial;
+                                                                                    -ms-user-select: initial;
+                                                                                    user-select: initial;">
+                    <div class="umb-table-cell">
+                        <i class="umb-table-body__icon umb-table-body__fileicon icon-user"></i>
+                    </div>
+                    <div class="umb-table-cell">
+						<a href="/umbraco#/member/member/edit/{{item.MemberId}}">{{item.MemberId}}</a>
+                    </div>
+                    <div class="umb-table-cell">
+                        {{item.CreatedDate | date:"dd/MM/yyyy"}}
+                    </div>
+                    <div class="umb-table-cell">
+                        {{item.DuplicateMemberIds}}
+                    </div>
+                    <div class="umb-table-cell">
+                        {{item.ResolutionDate | date:"dd/MM/yyyy"}}
+                    </div>
+                    <div class="umb-table-cell">
+                        <select ng-change="ctrl.MarkAsDirty(item)" ng-disabled="item.ResolutionDate != ''" ng-model="item.Status">
+                            <option value="0">Unresolved</option>
+                            <option value="1">Resolved</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pagination" style="float: right;" ng-show="ctrl.Pagination.length > 1">
+            <ul>
+                <li ng-class="{disabled:ctrl.PaginationCurrentPage <= 1}">
+                    <a href="#" ng-click="ctrl.PaginationPrev()" prevent-default>
+                        <localize key="general_previous">Previous</localize>
+                    </a>
+                </li>
+                <li ng-repeat="pgn in ctrl.Pagination"
+                    ng-class="{active:pgn == ctrl.PaginationCurrentPage}">
+                    <a href="#" ng-click="ctrl.PaginationGoToPage(pgn)" prevent-default
+                       ng-bind="pgn"></a>
+                </li>
+                <li ng-class="{disabled:ctrl.PaginationCurrentPage >= ctrl.PaginationMaxPage}">
+                    <a href="#" ng-click="ctrl.PaginationNext()" prevent-default>
+                        <localize key="general_next">Next</localize>
+                    </a>
+                </li>
+            </ul>
+        </div>
+		<button ng-click="ctrl.SaveChanges()" ng-disabled="ctrl.DirtyDuplicateList.length == 0" style="float: right; clear:both;" class="btn umb-button__button btn-success">Save</button>
+        <button ng-click="ctrl.ExportToCsv()" style="float: right; clear:both; margin: 20px 0;" class="btn umb-button__button btn-info">Export to CSV</button>
+    </div>
+</div>

@@ -33,8 +33,11 @@ config:
 DataTypes
 	name: "News Category Picker"
 		type: "Content Picker"
-		start node: ref "{Content/Data Sources/News Categories}"
-	
+		properties:
+			name: "Start Node"
+			value: 
+				ref "{Content/Data Sources/News Categories}"
+					
 	
 ################################
 #########DOCUMENT TYPES#########
@@ -147,13 +150,13 @@ Content:
 					name:  "Industry News"
 					type: 
 						ref "{Document Types/items/Base/Data Sources/News Category}"
-		Site Settings
-			type: 
-				ref "{Document Types/items/Base/Site Settings}"
-			properties:
-				name: "About Us Page"
-				value: 
-					ref "{Content/Home/About}"
+	name: "Site Settings"
+		type: 
+			ref "{Document Types/items/Base/Site Settings}"
+		properties:
+			name: "About Us Page"
+			value: 
+				ref "{Content/Home/About}"
 				
 				
 				
