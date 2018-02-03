@@ -21,6 +21,7 @@ namespace UmbracoImporter.Core.Importers
 		{
 			_contentTypeService = ApplicationContext.Current.Services.ContentTypeService;
 			_contentService = ApplicationContext.Current.Services.ContentService;
+
 		}
 
 		public DocumentTypes Import(DocumentTypes documentTypes)
@@ -49,7 +50,7 @@ namespace UmbracoImporter.Core.Importers
 						documentTypeId = CreateDocumentType(item, parentId, userId);
 					}
 
-					if (item.Items.Any() && documentTypeId.HasValue)
+					if (item.Items != null && item.Items.Any() && documentTypeId.HasValue)
 					{
 						EnumerateDocumentTypes(item.Items, documentTypeId.Value, userId);
 					}
@@ -60,7 +61,7 @@ namespace UmbracoImporter.Core.Importers
 
 		private int? CreateDocumentTypeFolder(Item item, int parentId, int userId = 0)
 		{
-			var result = _contentTypeService.CreateContentTypeContainer(parentId, item.Alias, userId);
+			var result = _contentTypeService.CreateContentTypeContainer(parentId, item.Name, userId);
 
 			if (result.Success)
 			{
@@ -74,15 +75,49 @@ namespace UmbracoImporter.Core.Importers
 
 		private int? CreateDocumentType(Item item, int parentId, int userId = 0)
 		{
-			var result = _contentService.CreateContent(item.Name, parentId, item.Alias, userId);
-			
-			if (result != null)
+			ContentType contentType = new ContentType(parentId);
+			contentType.Name = item.Name;
+			contentType.Alias = item.Alias;
+			contentType.Icon = "icon-message";
+
+			var textstringDef = new DataTypeDefinition(-1, "Umbraco.Textbox");
+			var richtextEditorDef = new DataTypeDefinition(-1, "Umbraco.TinyMCEv3");
+			var textboxMultipleDef = new DataTypeDefinition(-1, "Umbraco.TextboxMultiple");
+
+			if (item.Tabs != null && item.Tabs.Any())
 			{
-				return result.Id;
+				foreach (var tab in item.Tabs)
+				{
+					if (!string.IsNullOrEmpty(tab.Name))
+					{
+						contentType.AddPropertyGroup(tab.Name);
+
+						foreach (var property in tab.Properties)
+						{
+							contentType.AddPropertyType(
+								new PropertyType(textstringDef)
+								{
+									Alias = property.Alias,
+									Name = property.Name,
+									Description = "",
+									Mandatory = property.Mandatory,
+									SortOrder = 1
+								},
+								tab.Name);
+						}
+					}
+				}
+			}
+
+			_contentTypeService.Save(contentType);
+
+			if (contentType != null)
+			{
+				return contentType.Id;
 			}
 			else
 			{
-				return null;
+				return parentId;
 			}
 		}
 	}

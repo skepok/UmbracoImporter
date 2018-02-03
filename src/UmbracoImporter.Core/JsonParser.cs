@@ -14,8 +14,8 @@ namespace UmbracoImporter.Core
 	{
 		public ImportNode Load()
 		{
-			//var path = @"C:\Data\Projects\UmbracoImporter\src\json-site-spec.json";
-			var path = @"D:\MentorDigital-D\Projects\Projects\UmbracoImporter\src\json-site-spec.json";
+			var path = @"C:\Data\Projects\UmbracoImporter\src\json-site-spec.json";
+			//var path = @"D:\MentorDigital-D\Projects\Projects\UmbracoImporter\src\json-site-spec.json";
 			
 			  ImportNode importNode = new ImportNode();
 			using (StreamReader r = new StreamReader(path))

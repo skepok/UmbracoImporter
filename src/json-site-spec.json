@@ -45,7 +45,8 @@
 						"NodeType": {
 							"Name": "Document Type without a template"
 						},
-						"Items": [{
+						"Items": [
+							{
 								"Name": "Breadcrumb Block",
 								"NodeType": {
 									"Name": "Document Type without a template"
@@ -58,11 +59,7 @@
 								},
 								"Permissions": {
 									"AllowRoot": true
-								},
-								"Items": [{
-									"Name": "all",
-									"Ref": "{Document NodeTypes/Items/Web Blocks/Blocks Base}"
-								}]
+								}
 							}
 						]
 					},
@@ -71,18 +68,22 @@
 						"NodeType": {
 							"Name": "Document Type without a template"
 						},
-						"Items": [{
-							"Name": "Year Folder",
-							"NodeType": {
-								"Name": "Document Type without a template"
-							},
-							"Items": [{
-									"Name": "Month Folder",
-									"NodeType": {
-										"Name": "Document Type without a template"
-									}
+						"Items": [
+							{
+								"Name": "Year Folder",
+								"NodeType": {
+									"Name": "Document Type without a template"
 								},
-								{
+								"Items": [
+									{
+										"Name": "Month Folder",
+										"NodeType": {
+											"Name": "Document Type without a template"
+										}
+									}
+								]
+							},
+							{
 									"Name": "Web Blocks Page",
 									"NodeType": {
 										"Name": "Document Type without a template"
@@ -92,7 +93,7 @@
 										"NodeType": {
 											"Name": "Document Type without a template"
 										},
-										"controller": true,
+										"Controller": true,
 										"Permissions": {
 											"AllowRoot": true,
 											"Items": [{
@@ -168,8 +169,7 @@
 										}
 									}]
 								}
-							]
-						}]
+						]
 					}
 				]
 			},
@@ -199,7 +199,9 @@
 							"Name": "Content",
 							"Properties": [{
 								"Name": "About Us Page",
-								"NodeType": "Content Picker"
+								"NodeType": {
+									"Name": "Content Picker"
+								}
 							}]
 						}]
 					}

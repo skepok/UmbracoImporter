@@ -56,7 +56,8 @@ namespace UmbracoImporter.Core.Models
 				return char.ToLower(Name[0]) + Name.Substring(1, Name.Length - 1).Replace(" ", string.Empty);
 			}
 		}
-
+		public List<Tab> Tabs { get; set; }
+		public Permissions Permissions { get; set; }
 		public NodeType NodeType { get; set; }
 		public StartNode StartNode { get; set; }
 		public List<Item> Items { get; set; }
@@ -78,11 +79,21 @@ namespace UmbracoImporter.Core.Models
 		public string Name { get; set; }
 		public NodeType NodeType { get; set; }
 		public bool Mandatory { get; set; }
+		[JsonIgnore]
+		public string Alias
+		{
+			get
+			{
+				return char.ToLower(Name[0]) + Name.Substring(1, Name.Length - 1).Replace(" ", string.Empty);
+			}
+		}
 	}
 
 	public class Tab
 	{
 		public string Name { get; set; }
+
+		
 		public List<Property> Properties { get; set; }
 	}
 	
