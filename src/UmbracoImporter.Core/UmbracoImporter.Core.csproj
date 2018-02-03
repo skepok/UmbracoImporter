@@ -283,7 +283,11 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Controllers\Api\UImporterApiController.cs" />
+    <Compile Include="Importers\DataTypeImporter.cs" />
+    <Compile Include="Importers\ContentImporter.cs" />
     <Compile Include="Importers\DocumentTypeImporter.cs" />
+    <Compile Include="Interfaces\IContentImporter.cs" />
+    <Compile Include="Interfaces\IDataTypeImporter.cs" />
     <Compile Include="Interfaces\IDocumentTypeImporter.cs" />
     <Compile Include="JsonParser.cs" />
     <Compile Include="Models\JsonClasses.cs" />

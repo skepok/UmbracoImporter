@@ -98,12 +98,12 @@
 											"AllowRoot": true,
 											"Items": [{
 													"Name": {
-														"Ref": "{Document NodeTypes/Items/Base/Web Blocks Page/Content Page}"
+														"Ref": "{Document Types/Items/Base/Web Blocks Page/Content Page}"
 													}
 												},
 												{
 													"Name": {
-														"Ref": "{Document NodeTypes/Items/Base/Web Blocks Page/News Landing Page}"
+														"Ref": "{Document Types/Items/Base/Web Blocks Page/News Landing Page}"
 													}
 												},
 												{
@@ -213,18 +213,18 @@
 		"Items": [{
 			"Name": "Home",
 			"NodeType": {
-				"Ref": "{Document NodeTypes/Items/Base/Web Blocks Page/Home Page}"
+				"Ref": "{Document Types/Items/Base/Web Blocks Page/Home Page}"
 			},
 			"Items": [{
 					"Name": "About",
 					"NodeType": {
-						"Ref": "{Document NodeTypes/Items/Base/Web Blocks Page/Content Page}"
+						"Ref": "{Document Types/Items/Base/Web Blocks Page/Content Page}"
 					}
 				},
 				{
 					"Name": "Web Blocks",
 					"NodeType": {
-						"Ref": "{Document NodeTypes/Items/Web Blocks/Blocks Folder}"
+						"Ref": "{Document Types/Items/Web Blocks/Blocks Folder}"
 					}
 				}
 			]
@@ -232,17 +232,17 @@
 		{
 			"Name": "Data Sources",
 			"NodeType": {
-					"Ref": "{Document NodeTypes/Data Sources}"
+					"Ref": "{Document Types/Data Sources}"
 			},
 			"Items": [{
 				"Name": "News Categories",
 				"NodeType": {
-					"Ref": "{Document NodeTypes/Items/Base/Data Sources/News Categories}"
+					"Ref": "{Document Types/Items/Base/Data Sources/News Categories}"
 				},
 				"Items": [{
 					"Name": "Industry News",
 					"NodeType": {
-						"Ref": "{Document NodeTypes/Items/Base/Data Sources/News Category}"
+						"Ref": "{Document Types/Items/Base/Data Sources/News Category}"
 					}
 				}]
 			}]

@@ -14,10 +14,16 @@ namespace UmbracoImporter.Core.Controllers.Api
 	public class UImporterApiController : UmbracoAuthorizedApiController
 	{
 		protected JsonParser jsonParser;
+
+		protected ContentImporter _contentImporter;
+		protected DataTypeImporter _dataTypeImporter;
 		protected DocumentTypeImporter _documentTypeImporter;
-		public UImporterApiController(DocumentTypeImporter documentTypeImporter)
+
+		public UImporterApiController(ContentImporter contentImporter, DataTypeImporter dataTypeImporter, DocumentTypeImporter documentTypeImporter)
 		{
 			jsonParser = new JsonParser();
+			_contentImporter = contentImporter;
+			_dataTypeImporter = dataTypeImporter;
 			_documentTypeImporter = documentTypeImporter;
 		}
 
@@ -26,7 +32,11 @@ namespace UmbracoImporter.Core.Controllers.Api
 		{
 			ImportNode root = jsonParser.Load();
 
-			_documentTypeImporter.Import(root.DocumentTypes);
+			//_documentTypeImporter.Import(root.DocumentTypes);
+			_dataTypeImporter.Import(root.DataTypes);
+
+			_contentImporter.Import(root.Content);
+
 			return root;
 		}
 
@@ -35,7 +45,11 @@ namespace UmbracoImporter.Core.Controllers.Api
 		{
 			ImportNode root = jsonParser.Load(json);
 			_documentTypeImporter.Import(root.DocumentTypes);
-			
+
+			_dataTypeImporter.Import(root.DataTypes);
+
+			_contentImporter.Import(root.Content);
+
 			//var parsed = JsonConvert.SerializeObject(root);
 			//return new[] { parsed };
 			return root;

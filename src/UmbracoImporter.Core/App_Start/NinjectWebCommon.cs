@@ -78,6 +78,9 @@ namespace UmbracoImporter.Core.App_Start
 			//kernel.Bind<IDatabaseUnitOfWorkProvider>().To<PetaPocoUnitOfWorkProvider>().InRequestScope();
 			//kernel.Bind<IContentTypeService>().To<ContentTypeService>();
 			
+
+			kernel.Bind<IContentImporter>().To<ContentImporter>();
+			kernel.Bind<IDataTypeImporter>().To<DataTypeImporter>();
 			kernel.Bind<IDocumentTypeImporter>().To<DocumentTypeImporter>();
 		}        
     }
