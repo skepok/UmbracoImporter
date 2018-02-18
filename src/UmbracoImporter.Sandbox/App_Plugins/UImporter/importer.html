@@ -1,5 +1,3 @@
-<!--<div class="importer" ng-controller="Umbraco.Dashboard.RedirectUrlsController as vm">-->
-
 <style>
 
     .uimporter{
@@ -35,11 +33,11 @@
 </style>
 
 
-<div class="uimporter">
+<div class="uimporter" ng-controller="uImporterCtrl as ctrl">
 
     <h1>Importer</h1>
     <span id="import">import</span>
-    <span id="test">TEST</span>
+    <span id="test" ng-click="ctrl.Test()">TEST</span>
     <article class="playground">
 
         <div class="input">
@@ -59,19 +57,19 @@
 
     <script>
 
-        $("#test").on("click", function () {
-            $.get("/umbraco/backoffice/api/UImporterApi/MockImportJson", function (response) {
-                alert(response);
-            });
-        });
+        //$("#test").on("click", function () {
+        //    $.get("/umbraco/backoffice/api/UImporterApi/MockImportJson", function (response) {
+        //        alert(response);
+        //    });
+        //});
 
-        $("#import").on("click", function () {
-            var json = $("textarea").val();
-            $.post("/umbraco/backoffice/api/UImporterApi/ImportJson", { json: json }, function (response) {
-                alert(response);
-            });
+        //$("#import").on("click", function () {
+        //    var json = $("textarea").val();
+        //    $.post("/umbraco/backoffice/api/UImporterApi/ImportJson", { json: json }, function (response) {
+        //        alert(response);
+        //    });
            
-        });
+        //});
 
  
     </script>

@@ -1,0 +1,9 @@
+﻿{
+  javascript: [
+    "~/App_Plugins/UImporter/UImporter.Interfaces.js",
+    "~/App_Plugins/UImporter/UImporter.Models.js",
+    "~/App_Plugins/UImporter/UImporter.Services.js",
+    "~/App_Plugins/UImporter/UImporter.Controllers.js",
+    "~/App_Plugins/UImporter/UImporter.App.js"
+  ]
+}
